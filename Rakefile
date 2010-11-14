@@ -53,3 +53,17 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+task :remove_build do
+  Dir.open(Dir.pwd+"/pkg/").entries.grep(/my_/).each{|file| exec("rm pkg/#{file}")}
+end
+
+task :uninstall_build do
+  exec("gem uninstall my_zeo") if `gem list my_zeo`.include?('my_zeo')
+end
+
+task :clean_up_build => [:uninstall_build,:remove_build]
+
+task :create_build => [:build,:install]
+
+task :rebuild => [:remove_build,:build,:uninstall_build,:install]
