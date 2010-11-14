@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Haris Amin"]
-  s.date = %q{2010-11-13}
+  s.date = %q{2010-11-14}
   s.description = %q{A simple mapping to MyZeo API calls (http://mysleep.myzeo.com/api/api.shtml)}
   s.email = %q{aminharis7@gmail.com}
   s.extra_rdoc_files = [
@@ -17,16 +17,8 @@ Gem::Specification.new do |s|
      "README.rdoc"
   ]
   s.files = [
-    ".document",
-     ".gitignore",
-     "LICENSE",
-     "README.rdoc",
-     "Rakefile",
-     "VERSION",
-     "lib/my_zeo.rb",
-     "my_zeo.gemspec",
-     "test/helper.rb",
-     "test/test_my_zeo.rb"
+    "lib/hash_symbolize_keys.rb",
+     "lib/my_zeo.rb"
   ]
   s.homepage = %q{http://github.com/hamin/my_zeo}
   s.rdoc_options = ["--charset=UTF-8"]

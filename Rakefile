@@ -12,6 +12,7 @@ begin
     gem.authors = ["Haris Amin"]
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     gem.add_dependency 'httparty'
+    gem.files = Dir.glob('lib/**/*.rb')
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new

@@ -1,4 +1,5 @@
 class MyZeo
+  require 'hash_symbolize_keys'
   require 'httparty'
   include HTTParty
   
@@ -13,7 +14,7 @@ class MyZeo
   end
   
   def get_overall_average_zq_score
-    MyZeo.get("/getOverallAverageZQScore?key=#{@api_key}").parsed_response
+    MyZeo.get("/getOverallAverageZQScore?key=#{@api_key}").parsed_response.recursive_symbolize_keys!
   end
   
   def get_overall_average_day_feel_score
