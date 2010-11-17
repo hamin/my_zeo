@@ -18,11 +18,11 @@ class MyZeo
   # Currently Staging API
   # *************************************************************************************************************************************
   def subscribe_to_notify_link(callback_url)
-    "#{m.class.base_uri}/subscribeToNotify?key=#{@api_key}&userid=#{@user_id}&callback=#{callback_url}"
+    "#{self.class.base_uri}/subscribeToNotify?key=#{@api_key}&userid=#{@user_id}&callback=#{callback_url}"
   end
   
   def unsubscribe_to_notify_link
-    "#{m.class.base_uri}/unsubscribeToNotify?key=#{@api_key}&userid=#{@user_id}"
+    "#{self.class.base_uri}/unsubscribeToNotify?key=#{@api_key}&userid=#{@user_id}"
   end
   
   def unsubscribe_to_notify
