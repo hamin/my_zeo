@@ -6,12 +6,40 @@ class MyZeo
   base_uri "https://api.myzeo.com:8443/zeows/api/v1/sleeperService"
   
   attr_reader :api_key
+  attr_reader :user_id
   
   def initialize(api_key,opts={})
     @api_key = api_key
+    @user_id = opts[:user_id] ? opts[:user_id] : nil 
     MyZeo.basic_auth opts[:login], opts[:password] if (opts[:login] && opts[:password])
     MyZeo.base_uri opts[:base_url] if opts[:base_url] 
   end
+
+  # Currently Staging API
+  # *************************************************************************************************************************************
+  def subscribe_to_notify_link(callback_url)
+    "#{m.class.base_uri}/subscribeToNotify?key=#{@api_key}&userid=#{@user_id}&callback=#{callback_url}"
+  end
+  
+  def unsubscribe_to_notify_link
+    "#{m.class.base_uri}/unsubscribeToNotify?key=#{@api_key}&userid=#{@user_id}"
+  end
+  
+  def unsubscribe_to_notify
+    MyZeo.get("/unsubscribeToNotify?key=#{@api_key}", :query => {:userid => @user_id}).recursive_symbolize_keys!
+  end
+  
+  def get_bulk_sleep_stats_since_date(opts={})
+    date = opts[:date] ? opts[:date] : ""
+    MyZeo.get("/getBulkSleepStatsSinceDate?key=#{@api_key}", :query => {:userid => @user_id, :date => date }).recursive_symbolize_keys!
+  end
+  
+  def get_bulk_sleep_records_since_date(opts={})
+    date = opts[:date] ? opts[:date] : ""
+    MyZeo.get("/getBulkSleepRecordsSinceDate?key=#{@api_key}", :query => {:userid => @user_id, :date => date }).recursive_symbolize_keys!
+  end
+  
+  # *************************************************************************************************************************************
   
   def get_overall_average_zq_score
     MyZeo.get("/getOverallAverageZQScore?key=#{@api_key}").recursive_symbolize_keys!
