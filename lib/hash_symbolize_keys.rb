@@ -1,10 +1,20 @@
+class String
+  def underscore
+      self.gsub(/::/, '/').
+      gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
+      gsub(/([a-z\d])([A-Z])/,'\1_\2').
+      tr("-", "_").
+      downcase
+  end
+end  
+
 module  HashSymbolizeKeys
   def symbolize_keys!
     if defined? super
       super
     else
       keys.each do |key|
-        self[(key.to_sym rescue key)] = delete(key) if key.respond_to?(:to_sym) && !key.is_a?(Fixnum)
+        self[(key.to_s.underscore.to_sym rescue key)] = delete(key) if key.respond_to?(:to_sym) && !key.is_a?(Fixnum)
       end
       self
     end    
