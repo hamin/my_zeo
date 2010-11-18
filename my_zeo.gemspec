@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{my_zeo}
-  s.version = "0.3.0"
+  s.version = "0.4.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Haris Amin"]
-  s.date = %q{2010-11-17}
+  s.date = %q{2010-11-18}
   s.description = %q{A simple mapping to MyZeo API calls (http://mysleep.myzeo.com/api/api.shtml)}
   s.email = %q{aminharis7@gmail.com}
   s.extra_rdoc_files = [
