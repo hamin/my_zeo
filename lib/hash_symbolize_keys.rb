@@ -13,19 +13,15 @@ class String
 end  
 
 module  HashSymbolizeKeys
-  def symbolize_keys!
-    if defined? super
-      super
-    else
-      keys.each do |key|
-        self[(key.to_s.underscore.to_sym rescue key)] = delete(key) if key.respond_to?(:to_sym) && !key.is_a?(Fixnum)
-      end
-      self
-    end    
+  def underscore_and_symbolize_keys!
+    keys.each do |key|
+      self[(key.to_s.underscore.to_sym rescue key)] = delete(key) if key.respond_to?(:to_sym) && !key.is_a?(Fixnum)
+    end
+    self
   end
     
   def recursive_symbolize_keys!
-    symbolize_keys!
+    underscore_and_symbolize_keys!
     values.select { |v| v.is_a?(Hash) }.each { |h| h.recursive_symbolize_keys! }
     self
   end
