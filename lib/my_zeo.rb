@@ -21,12 +21,12 @@ class MyZeo
     "#{self.class.base_uri}/subscribeToNotify?key=#{@api_key}&userid=#{@user_id}&callback=#{callback_url}"
   end
   
-  def unsubscribe_to_notify_link
-    "#{self.class.base_uri}/unsubscribeToNotify?key=#{@api_key}&userid=#{@user_id}"
+  def unsubscribe_from_notify_link
+    "#{self.class.base_uri}/unsubscribeFromNotify?key=#{@api_key}&userid=#{@user_id}"
   end
   
-  def unsubscribe_to_notify
-    MyZeo.get("/unsubscribeToNotify?key=#{@api_key}", :query => {:userid => @user_id}).recursive_symbolize_keys!
+  def unsubscribe_from_notify
+    MyZeo.get("/unsubscribeFromNotify?key=#{@api_key}", :query => {:userid => @user_id}).recursive_symbolize_keys!
   end
   
   def get_bulk_sleep_stats_since_date(opts={})
