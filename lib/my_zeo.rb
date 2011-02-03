@@ -15,7 +15,7 @@ class MyZeo
     MyZeo.base_uri opts[:base_url] if opts[:base_url] 
   end
 
-  # Currently Staging API
+  # BULK API
   # *************************************************************************************************************************************
   def subscribe_to_notify_link(callback_url)
     "#{self.class.base_uri}/subscribeToNotify?key=#{@api_key}&userid=#{@user_id}&callback=#{callback_url}"
@@ -37,6 +37,11 @@ class MyZeo
   def get_bulk_sleep_records_since_date(opts={})
     date = opts[:date] ? opts[:date] : ""
     MyZeo.get("/getBulkSleepRecordsSinceDate?key=#{@api_key}", :query => {:userid => @user_id, :date => date }).recursive_symbolize_keys!
+  end
+  
+  def j_spring_security_logout
+    logout_url_base = self.base_uri.split('/api/').first
+    get("#{logout_url_base}/j_spring_security_logout")
   end
   
   # *************************************************************************************************************************************
@@ -114,7 +119,11 @@ class MyZeo
   end
   
   def logout
-    MyZeo.get("/logout?key=#{@api_key}").recursive_symbolize_keys!
+    MyZeo.get("/logout?key=#{@api_key}")
+  end
+  
+  def secure_logout
+    MyZeo.get("#{self.class.base_uri.split('/api/').first}/j_spring_security_logout")
   end
   
   
