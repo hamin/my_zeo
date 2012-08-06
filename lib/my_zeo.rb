@@ -69,7 +69,7 @@ class MyZeo
   def get_dates_with_sleep_data_in_range(opts={})
     date_from = opts[:date_from] ? opts[:date_from] : ""
     date_to = opts[:date_to] ? opts[:date_to] : ""
-    MyZeo.get("/getOverallAverageZQScore?key=#{@api_key}", :query => {:dateFrom => date_from, :dateTo => date_to}).recursive_symbolize_keys!
+    MyZeo.get("/getDatesWithSleepDataInRange?key=#{@api_key}", :query => {:dateFrom => date_from, :dateTo => date_to}).recursive_symbolize_keys!
   end
   
   def get_sleep_stats_for_date(opts={})
